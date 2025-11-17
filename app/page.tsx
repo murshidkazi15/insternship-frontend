@@ -76,7 +76,7 @@ export default function Home() {
           </p>          
         </div>
       </section>
-        
+      {/*Join our Beta*/}
 
 
     </main>
