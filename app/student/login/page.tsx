@@ -40,10 +40,10 @@ export default function LoginPage() {
     <main className="min-h-screen bg-[#eef3ff] flex flex-col items-center pt-16 px-6">
 
       {/* HEADER */}
-      <h1 className="text-4xl font-extrabold text-blue-600 mb-2 animate-fadeIn">
+      <h1 className="text-4xl font-extrabold text-blue-600">
         Insternship
       </h1>
-      <p className="text-gray-600 mb-10 animate-fadeIn animation-delay-200">
+      <p className="text-gray-600 mb-10">
         Connect with your perfect startup opportunity
       </p>
 
@@ -51,8 +51,7 @@ export default function LoginPage() {
       <div
         className="
           bg-white p-10 rounded-2xl shadow-lg w-full max-w-md 
-          transform transition-all duration-500 ease-out
-          animate-slideUp
+    
         "
       >
         <h2 className="text-2xl font-bold mb-2 text-gray-900">Login</h2>
@@ -61,23 +60,23 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className="space-y-4">
 
           {/* EMAIL */}
-          <div className="animate-fadeIn animation-delay-300">
+          <div className="">
             <label className="text-black block font-medium mb-1">Email</label>
             <input
               type="email"
               placeholder="student@example.com"
-              className="text-black w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 transition"
+              className="text-black w-full p-3 border rounded-lg focus:ring-2"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
           {/* PASSWORD */}
-          <div className="animate-fadeIn animation-delay-400">
+          <div className="">
             <label className="text-black block font-medium mb-1">Password</label>
             <input
               type="password"
-              className="text-black w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 transition"
+              className="text-black w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -85,7 +84,7 @@ export default function LoginPage() {
 
           {/* ERROR MESSAGE */}
           {error && (
-            <p className="text-red-600 text-sm animate-fadeIn">
+            <p className="">
               {error}
             </p>
           )}
@@ -95,7 +94,7 @@ export default function LoginPage() {
             type="submit"
             className="
               w-full py-3 mt-2 bg-[#1800ad] text-white rounded-lg 
-              hover:bg-[#ff3131] transition transform hover:scale-[1.02]
+              hover:bg-[#ff3131]
             "
           >
             Login
