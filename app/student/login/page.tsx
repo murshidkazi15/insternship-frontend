@@ -36,7 +36,6 @@ export default function LoginPage() {
     }
   }
 
-<<<<<<< HEAD
   async function handleGoogleSignIn() {
     setError("");
 

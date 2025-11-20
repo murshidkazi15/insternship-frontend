@@ -36,21 +36,14 @@ export default function SignupPage() {
       setSuccess("Check your email to confirm your account.");
     }
   }
-<<<<<<< HEAD
 
   async function handleGoogleSignIn() {
-=======
-async function handleGoogleSignIn() {
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
     setError("");
     setSuccess("");
 
     const { error } = await supabase.auth.signInWithOAuth({
-<<<<<<< HEAD
       provider: "google",
-=======
-      provider: 'google',
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
+
       options: {
         redirectTo: `${window.location.origin}/dashboard`,
       },
@@ -60,13 +53,12 @@ async function handleGoogleSignIn() {
       setError(error.message);
     }
   }
-<<<<<<< HEAD
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col items-center justify-center px-6 py-12">
+    <main className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col items-center justify-center px-6 py-12">
       {/* Header with Logo */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent mb-2">
+        <h1 className="text-4xl font-bold bg-linear-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent mb-2">
           Insternship
         </h1>
         <p className="text-blue-200 text-lg">Start your journey right now!</p>
