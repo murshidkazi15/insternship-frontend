@@ -21,10 +21,17 @@ export default function StudentDashboardPage() {
 
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     async function load() {
+=======
+
+  useEffect(() => {
+    async function load() {
+      // 1. check auth
+>>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       const {
         data: { user },
       } = await supabase.auth.getUser();
@@ -34,6 +41,10 @@ export default function StudentDashboardPage() {
         return;
       }
 
+<<<<<<< HEAD
+=======
+      // 2. load profile for this user
+>>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       const { data: row, error } = await supabase
         .from("student_profile")
         .select("*")
@@ -44,6 +55,10 @@ export default function StudentDashboardPage() {
         console.error("Error loading profile", error);
       }
 
+<<<<<<< HEAD
+=======
+      // no profile row → go to profile page
+>>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       if (!row) {
         router.push("/student/profile");
         return;
@@ -62,6 +77,10 @@ export default function StudentDashboardPage() {
         return;
       }
 
+<<<<<<< HEAD
+=======
+      // profile is complete → show dashboard
+>>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       setProfile(row);
       setLoading(false);
     }
@@ -69,6 +88,7 @@ export default function StudentDashboardPage() {
     load();
   }, [router, supabase]);
 
+<<<<<<< HEAD
   if (loading)
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center">
@@ -221,6 +241,15 @@ export default function StudentDashboardPage() {
           </div>
         </div>
       </div>
+=======
+  if (loading) return <p className="p-10 text-center">Loading...</p>;
+
+  return (
+    <div className="p-10">
+      <h1 className="text-2xl font-bold">Student Dashboard</h1>
+      <p className="mt-2">Welcome, {profile?.full_name}</p>
+      
+>>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
     </div>
   );
 }
