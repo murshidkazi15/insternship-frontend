@@ -52,10 +52,10 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col items-center justify-center px-6 py-12">
+    <main className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col items-center justify-center px-6 py-12">
       {/* Header with Logo */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent mb-2">
+        <h1 className="text-4xl font-bold bg-linear-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent mb-2">
           Insternship
         </h1>
         <p className="text-blue-200 text-lg">
@@ -66,7 +66,7 @@ export default function LoginPage() {
       {/* Login Card */}
       <div className="group relative w-full max-w-md">
         {/* Animated Border */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse"></div>
+        <div className="absolute -inset-0.5 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse"></div>
 
         <div className="relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-blue-700/30 shadow-lg hover:shadow-xl transition-all duration-300">
           {/* Header */}
@@ -121,11 +121,11 @@ export default function LoginPage() {
 
           {/* Visual Separator */}
           <div className="relative flex items-center mb-6">
-            <div className="flex-grow border-t border-blue-600/30"></div>
-            <span className="flex-shrink mx-4 text-blue-300 text-sm">
+            <div className="grow border-t border-blue-600/30"></div>
+            <span className="shrink mx-4 text-blue-300 text-sm">
               or continue with email
             </span>
-            <div className="flex-grow border-t border-blue-600/30"></div>
+            <div className="grow border-t border-blue-600/30"></div>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
@@ -178,7 +178,7 @@ export default function LoginPage() {
             <button
               type="submit"
               className="
-                w-full py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white 
+                w-full py-4 bg-linear-to-r from-blue-500 to-blue-600 text-white 
                 font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 
                 hover:scale-105 shadow-lg hover:shadow-blue-500/30 border border-blue-400/30
               "
@@ -201,81 +201,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-=======
-  return (
-    <main className="min-h-screen bg-[#eef3ff] flex flex-col items-center pt-16 px-6">
-
-      {/* HEADER */}
-      <h1 className="text-4xl font-extrabold text-blue-600">
-        Insternship
-      </h1>
-      <p className="text-gray-600 mb-10">
-        Connect with your perfect startup opportunity
-      </p>
-
-      {/* LOGIN CARD */}
-      <div
-        className="
-          bg-white p-10 rounded-2xl shadow-lg w-full max-w-md 
-    
-        "
-      >
-        <h2 className="text-2xl font-bold mb-2 text-gray-900">Login</h2>
-        <p className="text-gray-600 mb-6">Enter your email below to login to your account</p>
-
-        <form onSubmit={handleLogin} className="space-y-4">
-
-          {/* EMAIL */}
-          <div className="">
-            <label className="text-black block font-medium mb-1">Email</label>
-            <input
-              type="email"
-              placeholder="student@example.com"
-              className="text-black w-full p-3 border rounded-lg focus:ring-2"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* PASSWORD */}
-          <div className="">
-            <label className="text-black block font-medium mb-1">Password</label>
-            <input
-              type="password"
-              className="text-black w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* ERROR MESSAGE */}
-          {error && (
-            <p className="">
-              {error}
-            </p>
-          )}
-
-          {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="
-              w-full py-3 mt-2 bg-[#1800ad] text-white rounded-lg 
-              hover:bg-[#ff3131]
-            "
-          >
-            Login
-          </button>
-        </form>
-
-        {/* SIGNUP LINK */}
-        <p className="text-center mt-5 text-gray-600">
-          Don't have an account?{" "}
-          <a href="/student/signup" className="text-blue-600 underline">
-            Sign up
-          </a>
-        </p>
-      </div>
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
     </main>
   );
 }

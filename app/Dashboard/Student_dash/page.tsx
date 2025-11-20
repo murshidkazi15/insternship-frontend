@@ -21,17 +21,10 @@ export default function StudentDashboardPage() {
 
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     async function load() {
-=======
-
-  useEffect(() => {
-    async function load() {
-      // 1. check auth
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       const {
         data: { user },
       } = await supabase.auth.getUser();
@@ -41,10 +34,6 @@ export default function StudentDashboardPage() {
         return;
       }
 
-<<<<<<< HEAD
-=======
-      // 2. load profile for this user
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       const { data: row, error } = await supabase
         .from("student_profile")
         .select("*")
@@ -55,10 +44,6 @@ export default function StudentDashboardPage() {
         console.error("Error loading profile", error);
       }
 
-<<<<<<< HEAD
-=======
-      // no profile row → go to profile page
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       if (!row) {
         router.push("/student/profile");
         return;
@@ -77,10 +62,6 @@ export default function StudentDashboardPage() {
         return;
       }
 
-<<<<<<< HEAD
-=======
-      // profile is complete → show dashboard
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
       setProfile(row);
       setLoading(false);
     }
@@ -88,10 +69,9 @@ export default function StudentDashboardPage() {
     load();
   }, [router, supabase]);
 
-<<<<<<< HEAD
   if (loading)
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-blue-200">Loading your dashboard...</p>
@@ -100,7 +80,7 @@ export default function StudentDashboardPage() {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 flex">
       {/* Sidebar */}
       <div
         className={`bg-slate-800/50 backdrop-blur-sm border-r border-blue-700/30 transition-all duration-300 ${
@@ -111,7 +91,7 @@ export default function StudentDashboardPage() {
           {/* Logo and Toggle */}
           <div className="flex items-center justify-between mb-8">
             {sidebarOpen && (
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-linear-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
                 Insternship
               </h1>
             )}
@@ -138,7 +118,7 @@ export default function StudentDashboardPage() {
                 sidebarOpen ? "space-x-3" : "justify-center"
               }`}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+              <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">
                 {profile?.full_name?.charAt(0).toUpperCase()}
               </div>
               {sidebarOpen && (
@@ -233,7 +213,7 @@ export default function StudentDashboardPage() {
 
               <button
                 onClick={() => router.push("/student/profile")}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 border border-blue-400/30 w-auto"
+                className="px-6 py-3 bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 border border-blue-400/30 w-auto"
               >
                 Edit Profile
               </button>
@@ -241,15 +221,6 @@ export default function StudentDashboardPage() {
           </div>
         </div>
       </div>
-=======
-  if (loading) return <p className="p-10 text-center">Loading...</p>;
-
-  return (
-    <div className="p-10">
-      <h1 className="text-2xl font-bold">Student Dashboard</h1>
-      <p className="mt-2">Welcome, {profile?.full_name}</p>
-      
->>>>>>> c7c67afa078228f7bde1ae0c2b800036c11a9d72
     </div>
   );
 }

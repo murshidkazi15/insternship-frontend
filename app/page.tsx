@@ -1,9 +1,9 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <main className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Navigation Bar */}
       <header className="w-full flex justify-between items-center p-6 bg-blue-900/30 backdrop-blur-md border-b border-blue-700/30 shadow-sm">
-        <h1 className="text-white font-bold text-2xl bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
+        <h1 className="text-white font-bold text-2xl bg-linear-to-r from-blue-300 to-blue-100 bg-clip-text">
           Insternship
         </h1>
         <nav className="flex gap-4">
@@ -15,7 +15,7 @@ export default function Home() {
           </a>
           <a
             href="/student/signup"
-            className="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-blue-500/25"
+            className="px-6 py-2.5 bg-linear-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-blue-500/25"
           >
             Sign up
           </a>
@@ -33,11 +33,11 @@ export default function Home() {
 
           {/* Main Heading */}
           <h1 className="text-6xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white via-blue-100 to-blue-50 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-white via-blue-100 to-blue-50 bg-clip-text text-transparent">
               Students Meet
             </span>
             <br />
-            <span className="bg-gradient-to-r from-blue-300 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-300 to-blue-400 bg-clip-text text-transparent">
               Startups
             </span>
           </h1>
@@ -52,7 +52,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-6">
             <a
               href="/student/signup"
-              className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center gap-3 border border-blue-400/30"
+              className="group px-8 py-4 bg-linear-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center gap-3 border border-blue-400/30"
             >
               <span>Create Your Profile</span>
               <span className="group-hover:translate-x-1 transition-transform duration-200">
@@ -76,12 +76,12 @@ export default function Home() {
           {/* Smart Matching Card */}
           <div className="group relative">
             {/* Animated Border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
+            <div className="absolute -inset-0.5 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
             </div>
 
             <div className="relative bg-white p-8 rounded-2xl border-2 border-transparent group-hover:border-blue-300/30 transition-all duration-300 group-hover:scale-105 shadow-lg hover:shadow-xl">
-              <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
+              <div className="w-14 h-14 flex items-center justify-center bg-linear-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                   <div className="w-6 h-6 bg-white/90 rounded-lg"></div>
                 </div>
@@ -107,12 +107,12 @@ export default function Home() {
           {/* Career Growth Card */}
           <div className="group relative">
             {/* Animated Border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
+            <div className="absolute -inset-0.5 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
             </div>
 
             <div className="relative bg-white p-8 rounded-2xl border-2 border-transparent group-hover:border-blue-300/30 transition-all duration-300 group-hover:scale-105 shadow-lg hover:shadow-xl">
-              <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
+              <div className="w-14 h-14 flex items-center justify-center bg-linear-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                   <div className="w-6 h-6 bg-white/90 rounded-lg"></div>
                 </div>
@@ -138,12 +138,12 @@ export default function Home() {
           {/* Feedback System Card */}
           <div className="group relative">
             {/* Animated Border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
+            <div className="absolute -inset-0.5 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl opacity-70 blur-sm transition-all duration-1000 group-hover:opacity-100 group-hover:duration-200 animate-pulse group-hover:animate-none">
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl blur-sm opacity-50 group-hover:opacity-100 group-hover:animate-pulse"></div>
             </div>
 
             <div className="relative bg-white p-8 rounded-2xl border-2 border-transparent group-hover:border-blue-300/30 transition-all duration-300 group-hover:scale-105 shadow-lg hover:shadow-xl">
-              <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
+              <div className="w-14 h-14 flex items-center justify-center bg-linear-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                   <div className="w-6 h-6 bg-white/90 rounded-lg"></div>
                 </div>
@@ -169,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="py-20 text-center px-6 bg-gradient-to-r from-blue-900/50 to-slate-800/50 border-y border-blue-700/30">
+      <section className="py-20 text-center px-6 bg-linear-to-r from-blue-900/50 to-slate-800/50 border-y border-blue-700/30">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Launch Your Career?
@@ -180,7 +180,7 @@ export default function Home() {
           </p>
           <a
             href="/student/signup"
-            className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 shadow-lg border border-blue-400/30"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-linear-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 shadow-lg border border-blue-400/30"
           >
             Get Started Today
             <span className="text-lg">→</span>
