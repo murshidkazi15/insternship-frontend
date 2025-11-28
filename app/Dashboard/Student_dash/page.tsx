@@ -25,14 +25,9 @@ export default function StudentDashboardPage() {
 
   useEffect(() => {
     async function load() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
 
-      if (!user) {
-        router.push("/login");
-        return;
-      }
+      if (!user) return router.push("/login");
 
       const { data: row, error } = await supabase
         .from("student_profile")
@@ -40,34 +35,20 @@ export default function StudentDashboardPage() {
         .eq("id", user.id)
         .single<ProfileRow>();
 
-      if (error && error.code !== "PGRST116") {
-        console.error("Error loading profile", error);
-      }
+      if (!row) return router.push("/student/profile");
 
-      if (!row) {
-        router.push("/student/profile");
-        return;
-      }
+      const missing =
+        !row.full_name || !row.location || !row.experience_level ||
+        !row.availability || !row.skills?.length;
 
-      const missingRequired =
-        !row.full_name ||
-        !row.location ||
-        !row.experience_level ||
-        !row.availability ||
-        !row.skills ||
-        row.skills.length === 0;
-
-      if (missingRequired) {
-        router.push("/student/profile");
-        return;
-      }
+      if (missing) return router.push("/student/profile");
 
       setProfile(row);
       setLoading(false);
     }
 
     load();
-  }, [router, supabase]);
+  }, []);
 
   if (loading)
     return (
@@ -81,14 +62,14 @@ export default function StudentDashboardPage() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 flex">
-      {/* Sidebar */}
-      <div
-        className={`bg-slate-800/50 backdrop-blur-sm border-r border-blue-700/30 transition-all duration-300 ${
-          sidebarOpen ? "w-64" : "w-20"
-        }`}
-      >
+
+      {/* ────────────────── Sidebar ────────────────── */}
+      <div className={`bg-slate-800/50 border-r border-blue-700/30 transition-all duration-300
+        ${sidebarOpen ? "w-64" : "w-20"}`}>
+        
         <div className="p-6">
-          {/* Logo and Toggle */}
+          
+          {/* Logo + collapse button */}
           <div className="flex items-center justify-between mb-8">
             {sidebarOpen && (
               <h1 className="text-xl font-bold bg-linear-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
@@ -97,128 +78,96 @@ export default function StudentDashboardPage() {
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 text-blue-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+              className="p-2 text-blue-300 hover:text-white hover:bg-white/10 rounded-lg"
             >
               {sidebarOpen ? "←" : "→"}
             </button>
           </div>
 
-          {/* Navigation - Only Profile */}
-          <nav className="space-y-2">
-            <button className="w-full flex items-center space-x-3 p-3 rounded-xl text-left bg-blue-500/20 text-white border border-blue-500/30 transition-all duration-300">
-              <span className="text-lg">👤</span>
-              {sidebarOpen && <span className="font-medium">Profile</span>}
+          {/* Navigation */}
+          <nav className="space-y-3">
+
+            {/* Profile button */}
+            <button
+              className="w-full flex items-center gap-3 p-3 rounded-xl bg-blue-500/20 border border-blue-500/30 text-white"
+              onClick={() => router.push("/student/profile")}
+            >
+              👤 {sidebarOpen && "Profile"}
             </button>
+
+            {/* NEW — Opportunities */}
+            <button
+              className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-blue-500/20 border border-blue-500/30 text-white"
+              onClick={() => router.push("/student/opportunities")}
+            >
+              💼 {sidebarOpen && "Internship Opportunities"}
+            </button>
+
+            {/* NEW — Applied roles */}
+            <button
+              className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-blue-500/20 border border-blue-500/30 text-white"
+              onClick={() => router.push("/student/applications")}
+            >
+              📄 {sidebarOpen && "My Applications"}
+            </button>
+
+            {/* NEW — Saved roles (future use) */}
+            <button
+              className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-blue-500/20 border border-blue-500/30 text-white"
+              onClick={() => alert("Coming soon!")}
+            >
+              ⭐ {sidebarOpen && "Saved Internships"}
+            </button>
+
           </nav>
 
-          {/* User Profile */}
+          {/* Mini profile footer */}
           <div className="mt-8 pt-6 border-t border-blue-700/30">
-            <div
-              className={`flex items-center ${
-                sidebarOpen ? "space-x-3" : "justify-center"
-              }`}
-            >
-              <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+            <div className={`flex items-center ${sidebarOpen ? "gap-3" : "justify-center"}`}>
+              
+              <div className="w-10 h-10 bg-blue-500/80 rounded-full flex justify-center items-center font-bold text-white">
                 {profile?.full_name?.charAt(0).toUpperCase()}
               </div>
+
               {sidebarOpen && (
-                <div className="min-w-0">
-                  <p className="text-white text-sm font-medium truncate">
-                    {profile?.full_name}
-                  </p>
+                <div>
+                  <p className="text-white font-medium">{profile?.full_name}</p>
                   <p className="text-blue-300 text-xs">Student</p>
                 </div>
               )}
+
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* ────────────────── Main Dashboard content ────────────────── */}
       <div className="flex-1 p-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Welcome back, {profile?.full_name}!
-          </h1>
-          <p className="text-blue-200">
-            Your profile is complete and ready for matching.
-          </p>
-        </div>
 
-        {/* Profile Overview */}
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-blue-700/30 p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">
-            Profile Overview
-          </h2>
+        <h1 className="text-3xl font-bold text-white mb-2">
+          Welcome, {profile?.full_name} 👋
+        </h1>
+        <p className="text-blue-200 mb-8">
+          Explore internships recommended for you.
+        </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Basic Info */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-blue-200 font-medium mb-3">
-                  Basic Information
-                </h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-blue-300 text-sm">Full Name</p>
-                    <p className="text-white font-medium">
-                      {profile?.full_name}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-blue-300 text-sm">Location</p>
-                    <p className="text-white font-medium">
-                      {profile?.location}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-blue-300 text-sm">Experience Level</p>
-                    <p className="text-white font-medium">
-                      {profile?.experience_level}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-blue-300 text-sm">Availability</p>
-                    <p className="text-white font-medium">
-                      {profile?.availability}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="bg-slate-800/60 p-8 rounded-2xl border border-blue-700/40 backdrop-blur">
+          <h2 className="text-blue-100 text-xl font-bold mb-4">Your Details</h2>
 
-            {/* Skills & Bio */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-blue-200 font-medium mb-3">Skills</h3>
-                <div className="flex flex-wrap gap-2">
-                  {profile?.skills?.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-2 bg-blue-500/20 text-blue-300 rounded-lg text-sm border border-blue-500/30"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {profile?.bio && (
-                <div>
-                  <h3 className="text-blue-200 font-medium mb-3">Bio</h3>
-                  <p className="text-blue-100 leading-relaxed">{profile.bio}</p>
-                </div>
-              )}
-
-              <button
-                onClick={() => router.push("/student/profile")}
-                className="px-6 py-3 bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 border border-blue-400/30 w-auto"
-              >
-                Edit Profile
-              </button>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-white">
+            <p><b className="text-blue-300">Location:</b> {profile?.location}</p>
+            <p><b className="text-blue-300">Experience:</b> {profile?.experience_level}</p>
+            <p><b className="text-blue-300">Availability:</b> {profile?.availability}</p>
+            <p><b className="text-blue-300">Skills:</b> {profile?.skills?.join(", ")}</p>
           </div>
+
+          <button
+            onClick={() => router.push("/student/opportunities")}
+            className="mt-8 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-white font-semibold"
+          >
+            Browse Opportunities →
+          </button>
         </div>
       </div>
     </div>
