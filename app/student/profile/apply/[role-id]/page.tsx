@@ -18,9 +18,9 @@ export default function ApplyPage() {
   useEffect(() => {
     async function load() {
       const { data: { user }} = await supabase.auth.getUser();
-      if (!user) return router.push("/login"); // redirect if no user logged in
+      if (!user) return router.push("/login");
 
-      // Fetch student profile
+      // Load student profile
       const { data: studentRow } = await supabase
         .from("student_profile")
         .select("*")
@@ -30,7 +30,7 @@ export default function ApplyPage() {
       if (!studentRow) return router.push("/student/profile");
       setStudent(studentRow);
 
-      // Fetch role details
+      // Load role data
       const { data: roleRow } = await supabase
         .from("startup_role")
         .select("*")
@@ -42,7 +42,7 @@ export default function ApplyPage() {
       setRole(roleRow);
       setAnswers(new Array(roleRow.additional_questions?.length || 0).fill(""));
 
-      // Fetch startup info
+      // Load startup info
       const { data: startupRow } = await supabase
         .from("startup_profile")
         .select("startup_name, industry, location")
@@ -56,20 +56,15 @@ export default function ApplyPage() {
     load();
   }, []);
 
-  // ------------------- APPLY FUNCTION (FINAL FIXED VERSION) ------------------- //
+  // Handle Application Submit
   async function apply() {
     const { data: { user }} = await supabase.auth.getUser();
-
-    if (!user) {
-      router.push("/login");
-      return;
-    }
+    if (!user) return;
 
     const { error } = await supabase.from("role_application").insert({
       role_id: roleId,
-      student_id: user!.id,  // ⬅ FIXED (no more TS compile errors)
-      answers,
-      match_score: 0 // add if your table requires it, else remove
+      student_id: user.id,
+      answers
     });
 
     if (error) {
@@ -84,7 +79,7 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen p-10 text-white bg-linear-to-br from-slate-900 via-blue-900 to-slate-800">
-      
+      {/* Role Header */}
       <h1 className="text-4xl font-bold">{role.title}</h1>
       <p className="text-blue-300">{startup?.startup_name} • {role.location}</p>
       <p className="mt-3 max-w-2xl">{role.description}</p>
@@ -104,8 +99,7 @@ export default function ApplyPage() {
       {/* Additional Questions */}
       <div className="mt-10">
         <h2 className="text-xl font-bold mb-4">Application Questions</h2>
-
-        {role.additional_questions?.length === 0 && <p>No questions — just submit.</p>}
+        {role.additional_questions?.length === 0 && <p>No questions, just submit.</p>}
 
         {role.additional_questions?.map((q: string, i: number) => (
           <div key={i} className="mb-6">
@@ -124,6 +118,7 @@ export default function ApplyPage() {
         ))}
       </div>
 
+      {/* Submit */}
       <button
         onClick={apply}
         className="mt-6 px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
