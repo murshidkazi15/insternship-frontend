@@ -56,14 +56,19 @@ export default function ApplyPage() {
     load();
   }, []);
 
-  // Handle Application Submit
+  // -------- APPLY FUNCTION (FIXED) -------- //
   async function apply() {
     const { data: { user }} = await supabase.auth.getUser();
-    if (!user) return;
+
+    // TypeScript-safe user guard ✔
+    if (!user) {
+      router.push("/login");
+      return;
+    }
 
     const { error } = await supabase.from("role_application").insert({
       role_id: roleId,
-      student_id: user.id,
+      student_id: user.id, // Now safe
       answers
     });
 
@@ -79,6 +84,7 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen p-10 text-white bg-linear-to-br from-slate-900 via-blue-900 to-slate-800">
+      
       {/* Role Header */}
       <h1 className="text-4xl font-bold">{role.title}</h1>
       <p className="text-blue-300">{startup?.startup_name} • {role.location}</p>
